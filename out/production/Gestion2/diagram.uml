@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-556.0" y="-405.0">Livre</node>
+    <node x="-277.5" y="27.0">Stock</node>
+    <node x="-257.5" y="311.0">Emprunts</node>
+    <node x="-608.0" y="347.0">Historique</node>
+    <node x="-587.5" y="-765.0">Auteur</node>
+    <node x="-608.0" y="-57.0">Utilisateur</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Emprunts" target="Livre" relationship="TO_ONE">
+      <point x="0.0" y="-92.0" />
+      <point x="-133.0" y="263.0" />
+      <point x="27.0" y="263.0" />
+      <point x="27.0" y="-77.0" />
+      <point x="-453.0" y="-77.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="Stock" target="Livre" relationship="TO_MANY">
+      <point x="0.0" y="-56.0" />
+      <point x="-133.0" y="-77.0" />
+      <point x="-453.0" y="-77.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="Emprunts" target="Utilisateur" relationship="TO_ONE">
+      <point x="0.0" y="-92.0" />
+      <point x="-133.0" y="283.0" />
+      <point x="-453.0" y="283.0" />
+      <point x="0.0" y="140.0" />
+    </edge>
+    <edge source="Auteur" target="Livre" relationship="TO_MANY">
+      <point x="-60.0" y="128.0" />
+      <point x="-60.0" y="-128.0" />
+    </edge>
+    <edge source="Utilisateur" target="Livre" relationship="TO_MANY">
+      <point x="0.0" y="-140.0" />
+      <point x="0.0" y="128.0" />
+    </edge>
+    <edge source="Historique" target="Utilisateur" relationship="TO_MANY">
+      <point x="0.0" y="-56.0" />
+      <point x="0.0" y="140.0" />
+    </edge>
+    <edge source="Livre" target="Auteur" relationship="TO_ONE">
+      <point x="60.0" y="-128.0" />
+      <point x="60.0" y="128.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.68984375" showDependencies="true" x="-280.5" y="-124.75198187995466" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
