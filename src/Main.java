@@ -36,6 +36,7 @@ public class Main {
                     //fonction(CheckUser) pour check  si un user est bien enregistré
                     if(Utilisateur.CheckUser(value, prenomValue, nomValue)){
                         Livre.addLivre();
+                        System.out.println("test");
                     } else {
                         // sinon il s'enregistre et peut ajouter un livre
                       Utilisateur.addUser();
