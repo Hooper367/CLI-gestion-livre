@@ -1,12 +1,15 @@
 import java.io.*;
-import java.util.Objects;
 import java.util.Scanner;
+
+
 
 public class Livre {
     private String auteur;
     private String titre;
     private String typeLivre;
     private String quantite;
+
+
 
     public String getQuantite() {
         return quantite;
@@ -40,7 +43,7 @@ public class Livre {
         this.typeLivre = typeLivre;
     }
 
-    public static void addLivre(){
+    public static void addLivre() {
         Scanner value = new Scanner(System.in);
         System.out.println("Maintenant vous pouvez rentrer un livre en stock en mettant les info suivante : Marquer le titre du livre :");
         String livreTitre = (value.nextLine());
@@ -57,23 +60,21 @@ public class Livre {
         book.setTypeLivre(typeBook);
         book.setQuantite(quantite);
 
-        try(FileWriter fw = new FileWriter("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\Livre.csv", true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println(book.getTitre() +","+ book.getAuteur() +","+book.getQuantite()+","+book.getTypeLivre());
+        try (FileWriter fw = new FileWriter("csv/Livre.csv", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            out.println(book.getTitre() + "," + book.getAuteur() + "," + book.getQuantite() + "," + book.getTypeLivre());
         } catch (IOException e) {
-
         }
-
     }
-    public static void decreaseQuantity(){
+
+    public static void decreaseQuantity() {
         Scanner value = new Scanner(System.in);
         // decrease quantity
         System.out.println("Voulez vous emprunter un livre ? si vous avez fait votre choix marquer le titre du livre souhaité : ");
-        String title  = (value.nextLine());
+        String title = (value.nextLine());
         // lecture du CSV
-        File inputFile = new File("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\Livre.csv");
+        File inputFile = new File("csv/Livre.csv");
         FileReader fileReader;
         BufferedReader bufferedReader;
         try {
@@ -105,12 +106,16 @@ public class Livre {
                     int currentQuantity = Integer.parseInt(values[2]);
                     int newQuantity = currentQuantity - 1;
 
+                    if(newQuantity == 0) {
+                        // appeler fonction delete la ligne
+                    }else {
+                        // modifie la ligne pour avoir la nouvelle quantiter et la relier au stringbuilder
+                        values[2] = String.valueOf(newQuantity);
 
-                    // modifie la ligne pour avoir la nouvelle quantiter et la relier au stringbuilder
-                    values[2] = String.valueOf(newQuantity);
-                    outputContent.append(String.join(",", values));
+                        outputContent.append(String.join(",", values));
+                    }
+
                 } else {
-
                     // les lignes qui ne match avec le titre  sont directement relier(stocker) dans le stringbuilder
                     outputContent.append(line);
                 }
@@ -134,10 +139,11 @@ public class Livre {
             return;
         }
 
-        System.out.println("quantite -1 ");
+        System.out.println("Vous avez emprumter Ce livre (stock : quantite -1)");
     }
+
     public static void listeLivres() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\Livre.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("csv/Livre.csv"));
         String line = reader.readLine();
         String titre = null;
         String quantity = null;
@@ -148,12 +154,31 @@ public class Livre {
             String auteur = columns[1];
             quantity = columns[2];
             type = columns[3];
-            System.out.println("Titre du livre : " + titre.toUpperCase() + " : " + "auteur du livre : " + auteur.toUpperCase() + " : " + type.toUpperCase() + " : "  + "x"+quantity);
+            System.out.println("Titre du livre : " + titre.toUpperCase() + " : " + "auteur du livre : " + auteur.toUpperCase() + " : " + type.toUpperCase());
             line = reader.readLine();
 
         }
         reader.close();
     }
 
+    public static void removeZeroQuantityLines() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("csv/Livre.csv"))) {
+            StringBuilder builder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 3 && Integer.parseInt(fields[2]) == 0) {
+                    continue; // permet de skip la ligne qui a la quantite 0
+                }
+                builder.append(line).append("\n"); // Stocke les ligne qui n'ont pas 0 en quantiter
+
+            }
+            try (FileWriter writer = new FileWriter("csv/Livre.csv")) {
+                writer.write(builder.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

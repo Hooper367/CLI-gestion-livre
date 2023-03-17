@@ -5,52 +5,30 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Scanner value = new Scanner(System.in);
-        System.out.println("Bonjour voulez vous consulter le stock de nos livres ? yes or no :");
+        System.out.println("Bonjour avant d'acceder a notre menu, etes vous deja client chez nous ? yes(y) or no(n) : ");
         String response = (value.nextLine());
-        if(response.equals("yes")) {
+        if (response.equals("y") || response.equals("yes")) {
+            System.out.println("entrer votre prenom");
+            String prenomValue = (value.nextLine());
+            System.out.println("entrer votre nom");
+            String nomValue = (value.nextLine());
 
-            // fonction permettant de lister tout les livres
-            Livre.listeLivres();
-
-            // fonction permettant d'enlever 1 de quantiter si un utilisateur l'emprunte
-            Livre.decreaseQuantity();
-
-        } else if(response.equals("no")) {
-            System.out.println("Alors voulez vous ajouter un livre en stock ? yes or no :");
-            String res = (value.nextLine());
-
-            if(res.equals("yes")){
-                System.out.println("Ete vous deja client de chez nous ?  yes or no :");
-                String answer = (value.nextLine());
-
-                if(answer.equals("no")){
-                  Utilisateur.addUser();
-                  Livre.addLivre();
-
-                } else if (answer.equals("yes")) {
-                    System.out.println("entrer votre prenom");
-                    String prenomValue = (value.nextLine());
-                    System.out.println("entrer votre nom");
-                    String nomValue = (value.nextLine());
-
-                    //fonction(CheckUser) pour check  si un user est bien enregistré
-                    if(Utilisateur.CheckUser(value, prenomValue, nomValue)){
-                        Livre.addLivre();
-                        System.out.println("test");
-                    } else {
-                        // sinon il s'enregistre et peut ajouter un livre
-                      Utilisateur.addUser();
-                      Livre.addLivre();
-                    }
-
-                }
-            } else if (res.equals("no")) {
-                System.out.println("Dehors");
+            //fonction(CheckUser) pour check  si un user est bien enregistré
+            if (Utilisateur.CheckUser(value, prenomValue, nomValue)) {
+                Menu.choiceMenu();
+            } else {
+                System.out.println("Vous n'etes pas deja client veuillez vous inscrire");
+                Utilisateur.addUser();
+                Menu.choiceMenu();
             }
+        } else if (response.equals("no") || response.equals("n")) {
+            Utilisateur.addUser();
+            Menu.choiceMenu();
         }
 
     }
 }
+
 
 
 // test pour decrease quantité de 1 (pas concluant mais je le laisse quand meme)

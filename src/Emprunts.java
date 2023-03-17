@@ -2,6 +2,8 @@ public class Emprunts {
     private Livre LivreEmprumter;
     private Utilisateur emprumteur;
 
+
+
     public Livre getLivreEmprumter() {
         return LivreEmprumter;
     }
@@ -16,5 +18,10 @@ public class Emprunts {
 
     public void setEmprumteur(Utilisateur emprumteur) {
         this.emprumteur = emprumteur;
+    }
+
+    public static void UserEmprumts(String consoleName, String consoleFirstName, String title) {
+
+
     }
 }

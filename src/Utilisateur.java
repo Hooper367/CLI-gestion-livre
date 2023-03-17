@@ -50,7 +50,7 @@ public class Utilisateur {
         Utilisateur user = new Utilisateur();
         user.setNom(nom);
         user.setPrenom(prenom);
-        try (FileWriter fw = new FileWriter("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\User.csv", true);
+        try (FileWriter fw = new FileWriter("csv/User.csv", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println(user.getNom() + "," + user.getPrenom());
@@ -60,7 +60,7 @@ public class Utilisateur {
     }
 
     public static boolean CheckUser(Scanner value, String prenomValue, String nomValue) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\User.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("csv/User.csv"));
         String line = reader.readLine();
 
         while (line != null) {
