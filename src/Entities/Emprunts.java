@@ -1,3 +1,5 @@
+package Entities;
+
 public class Emprunts {
     private Livre LivreEmprumter;
     private Utilisateur emprumteur;

@@ -1,3 +1,6 @@
+import Entities.Menu;
+import Entities.Utilisateur;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -33,8 +36,8 @@ public class Main {
 
 // test pour decrease quantité de 1 (pas concluant mais je le laisse quand meme)
             /*int decrease = 1;
-            try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\Livre.csv"))) {
-                FileWriter writer = new FileWriter("Livre.csv", true);
+            try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\loick\\IdeaProjects\\Gestion2\\csv\\Entities.Livre.csv"))) {
+                FileWriter writer = new FileWriter("Entities.Livre.csv", true);
                 while ((line = br.readLine()) != null) {
                     String[] bookData = line.split(",");
                     if (bookData[0].equals(title)) {
@@ -52,7 +55,7 @@ public class Main {
             /*System.out.println("Voulez vous emprunter un livre ? si vous avez fait votre choix marquer le titre du livre souhaité : ");
             String title  = (value.nextLine());
 
-            if (Livre.checkForQuantity()) {
+            if (Entities.Livre.checkForQuantity()) {
 
                 System.out.println("Tres bien vous avez emprumter " + title);
             }*/
