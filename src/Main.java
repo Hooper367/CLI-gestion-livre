@@ -1,6 +1,6 @@
+import Entities.Livre;
 import Entities.Menu;
 import Entities.Utilisateur;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -8,25 +8,28 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         Scanner value = new Scanner(System.in);
+        Utilisateur user = new Utilisateur();
         System.out.println("Bonjour avant d'acceder a notre menu, etes vous deja client chez nous ? yes(y) or no(n) : ");
         String response = (value.nextLine());
         if (response.equals("y") || response.equals("yes")) {
-            System.out.println("entrer votre prenom");
+            System.out.println("Entrer votre prenom");
             String prenomValue = (value.nextLine());
-            System.out.println("entrer votre nom");
+            System.out.println("Entrer votre nom");
             String nomValue = (value.nextLine());
+
+            user.setNom(nomValue);
+            user.setPrenom(prenomValue);
 
             //fonction(CheckUser) pour check  si un user est bien enregistré
             if (Utilisateur.CheckUser(value, prenomValue, nomValue)) {
-                Menu.choiceMenu();
+                Menu.choiceMenu(user);
             } else {
-                System.out.println("Vous n'etes pas deja client veuillez vous inscrire");
-                Utilisateur.addUser();
-                Menu.choiceMenu();
+                System.out.println("Mauvais identifiant veuillez reesayer ");
+
             }
         } else if (response.equals("no") || response.equals("n")) {
-            Utilisateur.addUser();
-            Menu.choiceMenu();
+            user =  Utilisateur.addUser();
+            Menu.choiceMenu(user);
         }
 
     }

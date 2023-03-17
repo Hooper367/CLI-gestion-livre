@@ -42,7 +42,7 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-    public static void addUser() {
+    public static Utilisateur addUser() {
         Scanner value = new Scanner(System.in);
         System.out.println("Creer votre compte en entrant les info suivante : Entrer votre nom :");
         String nom = (value.nextLine());
@@ -52,6 +52,7 @@ public class Utilisateur {
         Utilisateur user = new Utilisateur();
         user.setNom(nom);
         user.setPrenom(prenom);
+
         try (FileWriter fw = new FileWriter("csv/User.csv", true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
@@ -59,6 +60,7 @@ public class Utilisateur {
         } catch (IOException e) {
 
         }
+        return user;
     }
 
     public static boolean CheckUser(Scanner value, String prenomValue, String nomValue) throws IOException {
@@ -70,7 +72,9 @@ public class Utilisateur {
 
             if (prenomValue.equals(columns[0]) && nomValue.equals(columns[1])) {
                 return true;
+
             }
+
             line = reader.readLine();
         }
         return false;

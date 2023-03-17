@@ -76,6 +76,8 @@ public class Livre {
         // decrease quantity
         System.out.println("Voulez vous emprunter un livre ? si vous avez fait votre choix marquer le titre du livre souhaité : ");
         String title = (value.nextLine());
+        Livre  livre = new Livre();
+        livre.setTitre(title);
         // lecture du CSV
         File inputFile = new File("csv/Livre.csv");
         FileReader fileReader;
@@ -109,15 +111,8 @@ public class Livre {
                     int currentQuantity = Integer.parseInt(values[2]);
                     int newQuantity = currentQuantity - 1;
 
-                    if(newQuantity == 0) {
-                        // appeler fonction delete la ligne
-                    }else {
-                        // modifie la ligne pour avoir la nouvelle quantiter et la relier au stringbuilder
                         values[2] = String.valueOf(newQuantity);
-
                         outputContent.append(String.join(",", values));
-                    }
-
                 } else {
                     // les lignes qui ne match avec le titre  sont directement relier(stocker) dans le stringbuilder
                     outputContent.append(line);

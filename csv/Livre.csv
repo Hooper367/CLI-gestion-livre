@@ -1,4 +1,5 @@
 titre,auteur,quantite,type
 cafouch,boucan,2,horreur
-yo,ya,1,yi
-new,moi,3,horreurLes miserables,victor hugo,2,romans
+yo,ya,0,yi
+new,moi,-4,horreur
+Les miserables,victor hugo,2,romans
