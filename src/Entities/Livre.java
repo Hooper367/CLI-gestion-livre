@@ -66,6 +66,7 @@ public class Livre {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
             out.println(book.getTitre() + "," + book.getAuteur() + "," + book.getQuantite() + "," + book.getTypeLivre());
+            System.out.println("Votre livre a ete ajouté");
         } catch (IOException e) {
         }
     }
